@@ -1,104 +1,150 @@
 <template>
-    <transition name="modal-animation">
-        <div v-if="modalActive" class="modal" @click.self="close">
-        
-        <transition name="modal-animation-inner">
+    <transition name="modal">
+        <div v-if="isOpen" class="modal">
+
             <div class="modal-inner">
-            
-            <!-- Close icon -->
-            <i 
-                @click="close" 
-                class="fa-regular fa-circle-xmark"
-            ></i>
+                <button @click="$emit('close')">X</button>
 
-            <!-- Content -->
-            <slot />
+                <h2>{{ titre }}</h2>
+                <img :src="image" alt="modal-image" class="modal-image">
+                <p>{{ description }}</p>
 
-            <button @click="close">Fermer</button>
+                <div class="buttons">
+                    <a :href="demo" target="_blank" class="btn demo">Démo</a>
+                    <a :href="github" target="_blank" class="btn github">GitHub</a>
+                </div>
             </div>
-        </transition>
 
         </div>
     </transition>
 </template>
 
 <script>
-export default {
-    props: ["modalActive"],
-    emits: ["close"],
-
-    setup(props, { emit }) {
-        const close = () => {
-        emit("close")
-        }
-
-        return { close }
+    export default {
+        props: ["isOpen", "titre", "description", "image", "demo", "github"]
     }
-}
 </script>
 
 <style scoped>
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    background: rgba(22, 22, 26, 0.6);
-    backdrop-filter: blur(8px);
-}
-
-.modal-inner {
-    position: relative;
-    max-width: 640px;
-    width: 80%;
-    background-color: #16161a;
-    padding: 40px 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.modal-inner i {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 22px;
-    cursor: pointer;
+/* Animation */
+    .modal-enter-active,
+    .modal-leave-active {
+        transition: opacity 0.3s ease;
     }
 
-.modal-inner i:hover {
-    color: crimson;
-}
-
-/* Animations */
-.modal-animation-enter-active,
-.modal-animation-leave-active {
-    transition: opacity 0.2s ease;
+    .modal-enter-from,
+    .modal-leave-to {
+        opacity: 0;
     }
 
-.modal-animation-enter-from,
-.modal-animation-leave-to {
-    opacity: 0;
-}
+    .modal-inner {
+        transform: scale(1);
+        transition: all 0.3s ease;
+    }
 
-.modal-animation-inner-enter-active {
-    transition: all 0.25s ease 0.1s;
-}
+    /*état de départ */
+    .modal-enter-from .modal-inner {
+        transform: scale(0.8);
+        opacity: 0;
+    }
 
-.modal-animation-inner-leave-active {
-    transition: all 0.2s ease;
-}
+    /*état de sortie */
+    .modal-leave-to .modal-inner {
+        transform: scale(0.8);
+        opacity: 0;
+    }
 
-.modal-animation-inner-enter-from {
-    opacity: 0;
-    transform: scale(0.85);
-}
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
 
-.modal-animation-inner-leave-to {
-    transform: scale(0.85);
-}
+        background: rgba(0, 0, 0, 0.6);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-inner {
+        position: relative; /* IMPORTANT pour le bouton */
+
+        background: #1e1e1e;
+        color: white;
+
+        padding: 20px;
+        border-radius: 10px;
+
+        width: 300px;
+        max-width: 90%;
+
+        text-align: center;
+    }
+
+    .modal-image {
+        width: 100%;
+        border-radius: 8px;
+        margin: 10px 0;
+    }
+
+    .modal-inner button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    } 
+
+    p {
+        font-size: medium;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* bouton démo */
+    .btn.demo {
+        background: #7f5af0;
+        color: white;
+    }
+
+    /* bouton github */
+    .btn.github {
+        border: 2px solid #7f5af0;
+        color: #7f5af0;
+        background: transparent;
+    }
+
+    /* hover */
+        .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn.demo:hover {
+        background: #6c4de0;
+    }
+
+    .btn.github:hover {
+        background: #7f5af0;
+        color: white;
+    }
 </style>

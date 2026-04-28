@@ -2,43 +2,33 @@
     <h1>Mes réalisations</h1>
 
     <div class="projects">
-        <div 
-        v-for="project in projects" 
-        :key="project.id" 
-        class="project-card"
-        >
-        <img :src="project.icon" alt="project.title" class="project-icon">
-
-        <h2>{{ project.title }}</h2>
-        <button @click="openModal(project)">Voir</button>
+        <div v-for="p in projects" :key="p.id" class="card">
+            <h3>{{ p.titre }}</h3>
+            <img :src="p.preview" class="card-image">
+            <button @click="selected = p">Voir</button>
         </div>
     </div>
 
-    <!-- Modal UNIQUE -->
     <Modal 
-        :modalActive="activeProject !== null" 
-        @close="closeModal"
-    >
-        <div v-if="activeProject" class="modal-content">
+        :isOpen="selected"
+        :titre="selected?.titre"
+        :description="selected?.description"
+        :image="selected?.image"
+        :demo="selected?.demo"
+        :github="selected?.github"
+        @close="selected = null" 
+    />
 
-        <h2>{{ activeProject.title }}</h2>
-
-        <img :src="activeProject.image" alt="activeProject.title" class="modal-image">
-
-        <p>{{ activeProject.description }}</p>
-        
-        <div class="modal-btn">
-            <a :href="activeProject.demo" class="btn demo">
-                Voir la démo
-            </a>
-
-            <a :href="activeProject.github" class="btn github">
-                GitHub
-            </a>
-        </div>
-        
-        </div>
-    </Modal>
+    <p class="bio">
+        Sur cette page, vous trouverez un aperçu détaillé de 
+        mes réalisations en développement web, du front-end 
+        au back-end. Chaque projet illustre non seulement ma 
+        maîtrise des technologies modernes, mais aussi ma 
+        capacité à concevoir des interfaces intuitives, à résoudre 
+        des problèmes complexes et à créer des expériences 
+        utilisateurs fluides et engageantes.
+    </p>
+    
 </template>
 
 <script>
@@ -51,117 +41,96 @@ import meteoIcon from "../assets/weather-app.png"
 import cvIcon from "../assets/cv.png"
 
 export default {
-    name: "Project",
     components: { Modal },
 
-    setup() {
-        const projects = [
-        {
-            id: 1,
-            title: "App Météo",
-            description: "Application météo en HTML, CSS et JavaScript avec API. - 2026",
-            image: meteoImg,
-            icon: meteoIcon,
-            demo: "https://userxxiixii.github.io/weather_app/",
-            github: "https://github.com/userXXIIXII/weather_app" 
-        },
-        {
-            id: 2,
-            title: "CV HTML",
-            description: "CV conçu avec HTML - 2024",
-            image: cvImg,
-            icon: cvIcon,
-            demo: "https://userxxiixii.github.io/CV-CEF/",
-            github: "https://github.com/userXXIIXII/CV-CEF"
-        },
-        ]
-
-        const activeProject = ref(null)
-
-        const openModal = (project) => {
-        activeProject.value = project
-        }
-
-        const closeModal = () => {
-        activeProject.value = null
-        }
-
+    data() {
         return {
-        projects,
-        activeProject,
-        openModal,
-        closeModal
+            selected: null,
+
+            projects: [
+                {
+                    id: 1,
+                    titre: "App météo",
+                    description: "Ce projet est une application météo développée en HTML, CSS et JavaScript, permettant d’afficher à JavaScript et à l’utilisation d’une API.",
+                    image: meteoImg,
+                    preview: meteoIcon,
+                    demo: "https://userxxiixii.github.io/weather_app/",
+                    github: "https://github.com/userXXIIXII/weather_app"
+                },
+
+                {
+                    id: 2,
+                    titre: "CV - HTML",
+                    description: "CV développé en HTML, mettant en avant une structure claire et sémantique pour présenter mes informations personnelles, mes compétences et mon parcours.",
+                    image: cvImg,
+                    preview: cvIcon,
+                    demo: "https://userxxiixii.github.io/CV-CEF/",
+                    github: "https://github.com/userXXIIXII/CV-CEF"
+                }
+            ]
         }
     }
 }
+
 </script>
 
 <style scoped>
-.projects {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+    .projects {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
 
-.project-card {
-    background: #242629;
-    padding: 20px;
-    border-radius: 8px;
-    width: 200px;
-}
+    /* carte */
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 300px;
+        height: 300px;
+        background: #1e1e1e;
+        border-radius: 12px;
+        overflow: hidden;
 
-button {
-    margin-top: 10px;
-    cursor: pointer;
-}
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.project-icon {
-    height: 150px;
-}
+    /* image */
+    .card-image {
+        height: 150px;
+        width: 150px;
+    }
 
-.modal-image {
-    height: 400px;
-    border-radius: 5px;
-}
+    /* contenu */
+    .card-content {
+        padding: 15px;
+        text-align: center;
+    }
 
-.modal-btn {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
+    .card>h3 {
+        color: white;
+        font-size: 16px;
+        margin: 10px 0;
+    }
 
-.btn {
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-}
+    /* bouton */
+    .card button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        background: #7f5af0;
+        color: white;
+        cursor: pointer;
+    }
 
-/* bouton démo */
-.btn.demo {
-  background: #7f5af0;
-  color: white;
-}
+    /* hover effet */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
 
-/* bouton github */
-.btn.github {
-  background: transparent;
-  border: 2px solid #7f5af0;
-  color: #7f5af0;
-}
-
-/* hover */
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn.demo:hover {
-  background: #6c4de0;
-}
-
-.btn.github:hover {
-  background: #7f5af0;
-  color: white;
-}
+    .bio {
+        padding-top: 50px;
+    }
 </style>

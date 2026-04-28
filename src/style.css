@@ -2,6 +2,7 @@
   line-height: 1.8;
   font-weight: 400;
   font-size: 18px;
+  font-family: 'Google Sans';
 }
 
 body {
@@ -14,7 +15,6 @@ html {
 
 h1,
 h2 {
-  font-family: 'Google Sans';
   font-weight: 500;
   color: var(--text-h);
   color: #fffffe;
