@@ -1,13 +1,17 @@
 <template>
     <header class="header">
-        <a href="#home" >
+        <a href="#home" @click="current = 'home'">
             <img src="../assets/logo.png" alt="logo" class="logo">
         </a>
         <h1>Portfolio de Aarin DEB</h1>
         <nav>
-            <a href="#about">A propos</a>
-            <a href="#project">Réalisations</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" 
+            @click="current = 'about'" 
+            :class="{ active: current === 'about' }">A propos</a>
+            <a href="#project" @click="current = 'project'" 
+            :class="{ active: current === 'project' }">Réalisations</a>
+            <a href="#contact" @click="current = 'contact'" 
+            :class="{ active: current === 'contact' }">Contact</a>
         </nav>
     </header>
 </template>
@@ -36,3 +40,15 @@
         height: 150px;
     }
 </style>
+
+<script>
+//fonction pour le soulignement des nav
+    export default {
+        data() {
+            return {
+                current: 'home'
+            }
+        }
+    }
+    
+</script>

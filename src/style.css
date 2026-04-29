@@ -13,6 +13,10 @@ html {
   scroll-padding-top: 120px;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 h1,
 h2 {
   font-weight: 500;
@@ -29,7 +33,7 @@ h2 {
 }
 
 p {
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin: 0;
   color: #94a1b2;
 }
@@ -43,6 +47,7 @@ main {
   width: 100%;
   margin: 0;
   padding: 0;
+  flex: 0;
 }
 
 button {
@@ -83,7 +88,7 @@ button {
 
 #project {
   margin: 0;
-  min-height: 100vh;
+  min-height: 80vh;
   background: linear-gradient(#242629, #16161a);
   padding: 50px;
   box-sizing: border-box;
@@ -91,8 +96,8 @@ button {
 
 #contact {
   margin: 0;
-  min-height: 100vh;
+  height: 75vh;
   background: linear-gradient(#16161a, #242629);
-  padding: 50px;
+  padding: 30px 50px;
   box-sizing: border-box;
 }

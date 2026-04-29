@@ -77,9 +77,16 @@
     text-align: center;
     }
 
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     /* inputs */
     input, textarea {
     width: 100%;
+    max-width: 400px;
     margin: 10px 0;
     padding: 12px 14px;
 

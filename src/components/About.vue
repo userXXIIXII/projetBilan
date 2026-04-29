@@ -37,7 +37,7 @@
     }
 
     .bio {
-        width: 700px;
+        width: 750px;
     }
     
 </style>

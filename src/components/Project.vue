@@ -75,6 +75,7 @@ export default {
 </script>
 
 <style scoped>
+
     .projects {
         display: flex;
         gap: 20px;
@@ -132,5 +133,8 @@ export default {
 
     .bio {
         padding-top: 50px;
+        max-width: 850px;
+        margin: 0 auto;
+        text-align: center;
     }
 </style>
