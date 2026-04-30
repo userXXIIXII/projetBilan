@@ -1,5 +1,55 @@
-# Vue 3 + Vite
+#  Portfolio - Vue.js
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+##  Description
+Ce projet est un portfolio personnel développé avec Vue.js.  
+Il permet de présenter mes projets, mes compétences ainsi que de proposer un formulaire de contact fonctionnel.  
+L’objectif est de créer une interface moderne, claire et responsive afin de mettre en valeur mon profil de développeur.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+---
+
+##  Démo en ligne
+https://portfolio-aarin-deb.vercel.app/
+
+---
+
+##  Technologies utilisées
+- Vue.js
+- Vite
+- HTML
+- CSS
+- JavaScript
+- EmailJS
+
+---
+
+##  Prérequis
+
+Avant de lancer le projet, vous devez avoir installé :
+
+- Node.js (version 18 ou supérieure recommandée)
+- npm (installé avec Node.js)
+
+---
+
+##  Installation
+
+1. Cloner le repository :
+
+```bash
+git clone https://github.com/userXXIIXII/Portfolio-Aarin-Deb.git
+
+```
+2. Accéder au dossier
+
+```
+cd Portfolio-Aarin-Deb
+```
+3. Installer les dépendances
+
+```
+npm install
+```
+4. Lancement du projet
+
+```
+npm run dev
