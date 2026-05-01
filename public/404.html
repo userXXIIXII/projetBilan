@@ -6,30 +6,54 @@
     <title>404 - Page non trouvée</title>
     <style>
         * {
-            font-family: 'Google Sans';
-        }
-        body {
-            background: linear-gradient(#7f5af0, #16161a);
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
             height: 100vh;
+            background: linear-gradient(#7f5af0, #16161a);
             color: white;
+
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
 
-        h1, p, a {
-            text-decoration: none;
-            text-shadow: 10px 10px 10px black;
-        }
-
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10px;
         }
 
+        h1 {
+            font-size: 120px;
+        }
+
+        p {
+            opacity: 0.8;
+        }
+
+        a {
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+
+            background: white;
+            color: #7f5af0;
+
+            transition: 0.3s;
+        }
+
+        a:hover {
+            transform: translateY(-3px);
+            background: #e0e0ff;
+        }
     </style>
 </head>
 <body>
