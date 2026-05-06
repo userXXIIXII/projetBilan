@@ -1,9 +1,12 @@
 <template>
     <h1>Mes réalisations</h1>
-
+    
+    <!--Carte projet-->
     <div class="projects">
         <!--Pour chaque éléments dans projects, je l'appelle p
-        key = identifiant unique pour chaque projet-->
+        key = identifiant unique pour chaque projet
+        v-for = parcourt chaque projet du tableau-->
+
         <div v-for="p in projects" :key="p.id" class="card">
             <h3>{{ p.titre }}</h3>
             <img :src="p.preview" class="card-image">
@@ -17,6 +20,7 @@
     Modal qui affiche les détails du projet sélectionné
     
     Selected = la variable qui contient le projet choisi-->
+    
     <Modal 
         :isOpen="selected"
         :titre="selected?.titre"
@@ -41,7 +45,6 @@
 
 <script>
 import Modal from '../components/Modal.vue'
-import { ref } from 'vue'
 
 import meteoImg from "../assets/weather-app-img.png"
 import cvImg from "../assets/CV-html.png"

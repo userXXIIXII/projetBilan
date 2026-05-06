@@ -43,21 +43,22 @@
         //methods = qui contient mes fonctions
         methods: {
             sendEmail() {
-                emailjs.send(
-                    "service_dawrunm",  //service email
-                    "template_pam6but", //template
+                emailjs.send( //fonction qui envoie le formulaire à EmailJS
+                    "service_dawrunm",  //service email (serviceID)
+                    "template_pam6but", //template (templateID)
                     {
                         //liaison des variables avec les données du template
                         //this. = accès aux données
+                        //templateParams (objet contenant les données envoyées au template EmailJS)
                         prenom: this.name,
                         nom: this.surname,
-                        email: this.email,
+                        email: this.email,      
                         objet: this.objet,
                         message: this.message
                     },
                     "RAAykAj5KGGwq2TtX" //Clé publique
                 )
-                .then(() => {
+                .then(() => { //then() = quand l'email est envoyé avec succès, exécute la suite
                     this.success = true
 
                     //Reset des champs
@@ -114,7 +115,7 @@
         transition: 0.2s;
         }
 
-        /* focus */
+        /* focus (quand l'utilisateur clique dessus)*/
         input:focus, textarea:focus {
         border: 1px solid #7f5af0;
         box-shadow: 0 0 0 2px rgba(127,90,240,0.3);
@@ -140,7 +141,7 @@
         font-weight: bold;
 
         cursor: pointer;
-        transition: 0.25s;
+        transition: 0.3s;
     }
 
     /* hover bouton */

@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    //Ce fichier exporte un composant Vue qui accepte ces données depuis son parent (Project.vue)
     export default {
         props: ["isOpen", "titre", "description", "image", "demo", "github"]
     }
